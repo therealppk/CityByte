@@ -1,4 +1,31 @@
-# CityByte 
+# CityByte Project 2
+Add new badges here
+
+## Introduction
+New and improved! Add more description here...
+
+Below are the new features and improvements we made:
+* X
+* Y
+* Z
+* A
+* B
+
+## Old Project
+Add video here
+
+## New Project
+Add video here
+
+## Team Members
+1. Shandler Mason - samason4
+2. A
+3. B
+4. C
+5. D
+
+
+# CityByte Project 1
 
 
 [![DOI](https://zenodo.org/badge/541612969.svg)](https://zenodo.org/badge/latestdoi/541612969) ![](https://img.shields.io/github/license/therealppk/CityByte) ![](https://img.shields.io/github/issues/therealppk/CityByte?style=plastic) ![](https://img.shields.io/github/issues-closed-raw/therealppk/CityByte?style=plastic) ![](https://img.shields.io/github/languages/code-size/therealppk/CityByte?style=plastic) ![](https://img.shields.io/github/contributors/therealppk/CityByte?style=plastic) [![Django CI](https://github.com/therealppk/CityByte/actions/workflows/django.yml/badge.svg)](https://github.com/therealppk/CityByte/actions/workflows/django.yml)

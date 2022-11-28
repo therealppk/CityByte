@@ -77,6 +77,12 @@
             display: none;
         }
 
+        #loading{
+            background: rgba(0,0,0,0.2);
+            color: white; margin: 8px 0; padding: 2px 8px; cursor: pointer;
+
+        }
+
         .auto-complete-li{
             background: rgba(0,0,0,0.2);
             color: white; margin: 8px 0; padding: 2px 8px; cursor: pointer;
@@ -105,17 +111,17 @@
 
     <div class="search-box-container">
         <div class="search-box"><input type="text" class="form-control" id="query" spellcheck="false" autocomplete="off" onkeyup="getSuggestions(event)" placeholder="Type a city"></div>
-    
+        <div class="d-none" id="loading">
+            Loading...
+            </div>
         <div id="auto-complete-container" style="font-size:24px; height: 150px; overflow-y: scroll;">
             <ul id="auto-complete-ul" style="list-style-type: none;">
-    
+
             </ul>
         </div>
     
     </div>
-    <div class="d-none" id="loading" style="color: white; font-size: 48px;">
-    Loading...
-    </div>
+  
 
 
 
@@ -126,7 +132,7 @@
     var timeout1 = null;
     load = document.getElementById("loading")
     auto_complete_list = document.getElementById("auto-complete-ul")
-
+    lists = []
 
     function reflectSuggestions(city, citiesJSON) {
         let citySuggestions = JSON.parse(citiesJSON).results;
@@ -189,12 +195,12 @@
 
         xhr.onload = function(e) {
             console.log(this.responseText)
-            lists = []
+            
             var res = JSON.parse(this.responseText).results
-
+            lists = []
             li_content = ""
             for(var item of res){
-                lists.push(item.name)
+                lists.push(item)
                 li_content += `<li class="auto-complete-li" onClick='updateQuery(event)'>${item.name}</li>`
             }
             auto_complete_list.innerHTML = li_content
@@ -207,7 +213,7 @@
         xhr.open('GET', url, true);
         xhr.send();
         
-  
+
 
     }
 
@@ -216,6 +222,16 @@
         document.getElementById("query").value = event.target.innerHTML
         clearTimeout(timeout);
         timeout = setTimeout(getCityList, 700, reflectSuggestions);
+        auto_complete_list.innerHTML = ""
+
+        for(var x of lists){
+            if(x.name === event.target.innerHTML){
+                location.href = "{% url "info_page" %}?city=" + x.name + "&country=" + x.address.countryCode;
+
+                break;
+            }
+        }
+
     }
 
     function redict_to_info(city, citiesJSON) {

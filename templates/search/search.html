@@ -28,10 +28,11 @@
             position: relative;
         }
 
-        .search-box, .search-box-suggestion {
+        /* .search-box, .search-box-suggestion {
             position: absolute;
             top: 10vh;
-        }
+            border: none;
+        } */
         .auto-complete-container{
             position: absolute;
             top: 15;
@@ -45,6 +46,7 @@
             /*position: absolute;*/
             font-size: 10rem;
             color: #f5f9e9;
+            border: none;
         }
 
         #suggestion, #suggestion-before, #suggestion-after {
@@ -58,7 +60,7 @@
 
             padding: 0;
 
-            color: transparent;
+            color: white;
             border-color: inherit;
             -webkit-box-shadow: none;
             box-shadow: none;
@@ -73,6 +75,16 @@
 
         .d-none{
             display: none;
+        }
+
+        .auto-complete-li{
+            background: rgba(0,0,0,0.2);
+            color: white; margin: 8px 0; padding: 2px 8px; cursor: pointer;
+        }
+
+        .auto-complete-li:hover{
+            background: rgba(0,0,0,0.5);
+
         }
 
 
@@ -93,9 +105,8 @@
 
     <div class="search-box-container">
         <div class="search-box"><input type="text" class="form-control" id="query" spellcheck="false" autocomplete="off" onkeyup="getSuggestions(event)" placeholder="Type a city"></div>
-        <div class="search-box-suggestion"><span id="suggestion-before"></span><span id="suggestion"></span><span id="suggestion-after"></span></div>
     
-        <div id="auto-complete-container" style="padding: 8px; font-size:24px;">
+        <div id="auto-complete-container" style="font-size:24px; height: 150px; overflow-y: scroll;">
             <ul id="auto-complete-ul" style="list-style-type: none;">
     
             </ul>
@@ -126,8 +137,8 @@
             clearTimeout(timeout1);
             timeout1 = setTimeout(getCityPhoto, 100, cityFirstSuggestion, updateBackground);
 
-            document.getElementById('suggestion-before').innerHTML = cityFirstSuggestion.slice(0, cityFirstSuggestion.indexOf(city));
-            document.getElementById('suggestion-after').innerHTML = cityFirstSuggestion.slice(cityFirstSuggestion.indexOf(city) + city.length);
+            // document.getElementById('suggestion-before').innerHTML = cityFirstSuggestion.slice(0, cityFirstSuggestion.indexOf(city));
+            // document.getElementById('suggestion-after').innerHTML = cityFirstSuggestion.slice(cityFirstSuggestion.indexOf(city) + city.length);
         }
     }
 
@@ -184,7 +195,7 @@
             li_content = ""
             for(var item of res){
                 lists.push(item.name)
-                li_content += `<li style="background: grey; color: white; margin: 8px; padding: 2px 8px;">${item.name}</li>`
+                li_content += `<li class="auto-complete-li" onClick='updateQuery(event)'>${item.name}</li>`
             }
             auto_complete_list.innerHTML = li_content
             console.log(lists)
@@ -200,6 +211,13 @@
 
     }
 
+    function updateQuery(event){
+        console.log(event.target.innerHTML)
+        document.getElementById("query").value = event.target.innerHTML
+        clearTimeout(timeout);
+        timeout = setTimeout(getCityList, 700, reflectSuggestions);
+    }
+
     function redict_to_info(city, citiesJSON) {
         let citySuggestions = JSON.parse(citiesJSON).results;
 
@@ -211,8 +229,8 @@
     function clearSuggestions() {
         load.classList.add("d-none")
         load.classList.remove("d-block")
-        document.getElementById('suggestion-before').innerHTML = "";
-        document.getElementById('suggestion-after').innerHTML = "";
+        // document.getElementById('suggestion-before').innerHTML = "";
+        // document.getElementById('suggestion-after').innerHTML = "";
         document.body.style.backgroundImage = null;
         document.body.style.background = "#3F3F3F";
         document.body.style.backgroundSize = null;
@@ -227,7 +245,7 @@
         load.classList.add("d-none")
         load.classList.remove("d-block")
         document.getElementById("query").value = document.getElementById("query").value.split(' ').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
-        document.getElementById('suggestion').innerHTML =  '<b>' + document.getElementById("query").value + '</b>';
+        document.getElementById('query').innerHTML =  '<b>' + document.getElementById("query").value + '</b>';
         clearSuggestions();
 
         clearTimeout(timeout);

@@ -22,9 +22,19 @@
             margin: auto;
         }
 
+        .search-box-container{
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
         .search-box, .search-box-suggestion {
             position: absolute;
-            top: 30vh;
+            top: 10vh;
+        }
+        .auto-complete-container{
+            position: absolute;
+            top: 15;
         }
 
         .search-box-suggestion {
@@ -80,11 +90,22 @@
 </nav>
 
 <div class="container">
-    <div class="search-box"><input type="text" class="form-control" id="query" spellcheck="false" autocomplete="off" onkeyup="getSuggestions(event)" placeholder="Type a city"></div>
-    <div class="search-box-suggestion"><span id="suggestion-before"></span><span id="suggestion"></span><span id="suggestion-after"></span></div>
+
+    <div class="search-box-container">
+        <div class="search-box"><input type="text" class="form-control" id="query" spellcheck="false" autocomplete="off" onkeyup="getSuggestions(event)" placeholder="Type a city"></div>
+        <div class="search-box-suggestion"><span id="suggestion-before"></span><span id="suggestion"></span><span id="suggestion-after"></span></div>
+    
+        <div id="auto-complete-container" style="padding: 8px; font-size:24px;">
+            <ul id="auto-complete-ul" style="list-style-type: none;">
+    
+            </ul>
+        </div>
+    
+    </div>
     <div class="d-none" id="loading" style="color: white; font-size: 48px;">
     Loading...
     </div>
+
 
 
 </div>
@@ -93,6 +114,7 @@
     var timeout = null;
     var timeout1 = null;
     load = document.getElementById("loading")
+    auto_complete_list = document.getElementById("auto-complete-ul")
 
 
     function reflectSuggestions(city, citiesJSON) {
@@ -122,7 +144,7 @@
 
     function getCityPhoto(city, callback1) {
         let xhr1 = new XMLHttpRequest();
-
+        
         let url1 = new URL('{{ request.scheme }}://{{ request.get_host }}{% url 'search:city_photo' %}');
         url1.searchParams.set('q', city);
 
@@ -158,9 +180,13 @@
             console.log(this.responseText)
             lists = []
             var res = JSON.parse(this.responseText).results
+
+            li_content = ""
             for(var item of res){
                 lists.push(item.name)
+                li_content += `<li style="background: grey; color: white; margin: 8px; padding: 2px 8px;">${item.name}</li>`
             }
+            auto_complete_list.innerHTML = li_content
             console.log(lists)
             callback(city, this.responseText);
             load.classList.add("d-none")
@@ -197,6 +223,7 @@
         if (e.key === 'Enter' || e.keyCode === 13) {
             getCityList(redict_to_info);
         }
+        auto_complete_list.innerHTML = ""
         load.classList.add("d-none")
         load.classList.remove("d-block")
         document.getElementById("query").value = document.getElementById("query").value.split(' ').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');

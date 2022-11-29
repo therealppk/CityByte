@@ -73,12 +73,16 @@
         <div class="mask">
             <div class="d-flex justify-content-center align-items-center h-100">
                 <div class="text-white">
+                    {% if weather_info %}
                     <h1 style="font-size: 7rem; color: antiquewhite;">{{ weather_info.city_name }}</h1>
                     <h4 class="mb-3">{{ weather_info.state_code }}, {{ weather_info.country_code }}</h4>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
+
+    {% if weather_info %}
     <div class="d-flex flex-wrap" style="margin: 1rem;">
         <div class="card text-center">
             <div class="card-body">
@@ -183,6 +187,8 @@
             </div>
         </div>
     </div>
+   
+
     <h2 style="margin: 4rem 0 1rem 1rem;">Top Rated Dining Spots</h2>
     <div class="d-flex flex-wrap" style="margin: 1rem;">
         {% for place in dining_info.results %}
@@ -241,6 +247,11 @@
                 </div>
             {% endfor %}
         </div>
+    {% endif %}
+
+
+    {% else %}
+    <h1 style="font-size: 48px;">We cannot fetch info for this city!</h1>
     {% endif %}
 </div>
 </body>

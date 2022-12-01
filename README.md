@@ -5,11 +5,11 @@ Add new badges here
 New and improved! Add more description here...
 
 Below are the new features and improvements we made:
-* X
-* Y
-* Z
-* A
-* B
+1. Implemented a wish list to save interesting locations so you can come back and look at them later
+2. Y
+3. Z
+4. A
+5. B
 
 ## Old Project
 Below is a video of the old project:

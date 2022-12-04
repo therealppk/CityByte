@@ -201,7 +201,8 @@
             li_content = ""
             for(var item of res){
                 lists.push(item)
-                li_content += `<li class="auto-complete-li" onClick='updateQuery(event)'>${item.name}</li>`
+                let cityLabel = `${item.name},${item.address.countryCode}`
+                li_content += `<li class="auto-complete-li" onClick='updateQuery(event)'>${cityLabel}</li>`
             }
             auto_complete_list.innerHTML = li_content
             console.log(lists)
@@ -224,13 +225,15 @@
 
     function updateQuery(event){
         console.log(event.target.innerHTML)
-        document.getElementById("query").value = event.target.innerHTML
+        document.getElementById("query").value = event.target.innerHTML.split(',')[0]
         clearTimeout(timeout);
         timeout = setTimeout(getCityList, 700, reflectSuggestions);
         auto_complete_list.innerHTML = ""
-
+        let place_name = event.target.innerHTML.split(',')
         for(var x of lists){
-            if(x.name === event.target.innerHTML){
+            console.log(x)
+            console.log(place_name)
+            if(x.name === place_name[0] && x.address.countryCode === place_name[1]){
                 location.href = "{% url "info_page" %}?city=" + x.name + "&country=" + x.address.countryCode;
 
                 break;

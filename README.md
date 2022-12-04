@@ -1,5 +1,5 @@
 # CityByte Project 2
-Add new badges here
+![](https://img.shields.io/github/issues-raw/rohitgeddam/CityByte) ![](https://img.shields.io/github/issues-closed-raw/rohitgeddam/CityByte)
 
 ## Introduction
 New and improved! Add more description here...

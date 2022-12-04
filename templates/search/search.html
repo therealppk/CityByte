@@ -205,6 +205,11 @@
             }
             auto_complete_list.innerHTML = li_content
             console.log(lists)
+            if(lists.length == 0 && document.getElementById("query").value !== ""){
+                console.log("City Not found!");
+                alert("City Not Found! Try a different city!")
+
+            }
             callback(city, this.responseText);
             load.classList.add("d-none")
             load.classList.remove("d-block")

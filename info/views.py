@@ -1,5 +1,5 @@
 from datetime import datetime
-
+import json
 import pytz
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_http_methods
@@ -13,8 +13,11 @@ from django.core.cache import cache
 
 @require_http_methods(["GET"])
 def place_photo(request):
-    photo_link = FourSquarePlacesHelper().get_place_photo(fsq_id=request.GET.get('fsq_id'))
-    print("PhotoLink",photo_link )
+    photo_link = cache.get(f"photo-link-{request.GET.get('fsq_id')}")
+    
+    if not photo_link:
+        photo_link = FourSquarePlacesHelper().get_place_photo(fsq_id=request.GET.get('fsq_id'))
+        cache.set(f"photo-link-{request.GET.get('fsq_id')}", photo_link)
     return redirect(photo_link)
 
 
@@ -28,7 +31,8 @@ def info_page(request):
 
     # try cache first
     weather_info = cache.get(f"{city}-weather")
-
+    print(json.dumps(weather_info))
+    print("")
     if not weather_info:
         try:
             weather_info = WeatherBitHelper().get_city_weather(city=city, country=country)["data"][0]
@@ -45,6 +49,9 @@ def info_page(request):
     
 
     dining_info = cache.get(f"{city}-dinning")
+    print("dining_info", json.dumps(dining_info))
+    print("")
+    
     if not dining_info:
         dining_info = FourSquarePlacesHelper().get_places(
             city=f"{city}, {country}", categories="13065", sort="RELEVANCE", limit=5)
@@ -52,6 +59,9 @@ def info_page(request):
         
         
     airport_info = cache.get(f"{city}-airport")
+    print("airport", json.dumps(airport_info))
+    print("")
+    
     if not airport_info:
         airport_info = FourSquarePlacesHelper().get_places(
             city=f"{city}, {country}", categories="19040", sort="RELEVANCE", limit=5)
@@ -60,6 +70,9 @@ def info_page(request):
         
         
     outdoor_info = cache.get(f"{city}-outdoor")
+    print("outdoor", json.dumps(outdoor_info))
+    print("")
+    
     if not outdoor_info:
         outdoor_info = FourSquarePlacesHelper().get_places(
             city=f"{city}, {country}", categories="16000", sort="RELEVANCE", limit=5)
@@ -68,6 +81,9 @@ def info_page(request):
     
     
     arts_info = cache.get(f"{city}-arts")
+    print("arts", json.dumps(arts_info))
+    print("")
+    
     if not arts_info:
         arts_info = FourSquarePlacesHelper().get_places(
             city=f"{city}, {country}", categories="10000", sort="RELEVANCE", limit=5)
@@ -76,13 +92,15 @@ def info_page(request):
 
 
     photo_link = cache.get(f"{city}-photolink")
+    print("photo-link", json.dumps(photo_link))
+    print("")
+    
     
     if not photo_link:
         photo_link = UnplashCityPhotoHelper().get_city_photo(city=city)
         cache.set(f"{city}-photolink", photo_link)
-        
-
-    print(dining_info)
+    
+    
     return render(
         request, 'search/city_info.html',
         context={

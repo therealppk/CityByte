@@ -82,7 +82,7 @@
         </div>
     </div>
 
-    {% if weather_info %}
+
     <div class="d-flex flex-wrap" style="margin: 1rem;">
         <div class="card text-center">
             <div class="card-body">
@@ -235,7 +235,7 @@
         {% endfor %}
     </div>
     {% if airport_info.results %}
-        <div id="airport-info-div">
+
             <h2 style="margin: 4rem 0 1rem 1rem;">Airports</h2>
             <div class="d-flex flex-wrap" style="margin: 1rem;">
                 {% for place in airport_info.results %}
@@ -248,25 +248,10 @@
                     </div>
                 {% endfor %}
             </div>
-        </div>
+
     {% endif %}
 
 
-    {% else %}
-    <h1 style="font-size: 48px;">We cannot fetch info for this city!</h1>
-    {% endif %}
-
-    <script>
-        var airport_info_div = document.getElementById("airport-info-div")
-        var airport_imgs = document.getElementsByClassName("airport-info-img")
-        
-        for( var el of airport_imgs){
-            el.addEventListener("error", () => {
-            airport_info_div.style.display = 'none';
-        } )
-    }
-
-    </script>
 </div>
 </body>
 </html>

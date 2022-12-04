@@ -7,7 +7,7 @@ from django.views.decorators.http import require_http_methods
 from info.helpers.places import FourSquarePlacesHelper
 from info.helpers.weather import WeatherBitHelper
 from search.helpers.photo import UnplashCityPhotoHelper
-
+from .models import CitySearchRecord
 
 @require_http_methods(["GET"])
 def place_photo(request):
@@ -20,6 +20,9 @@ def info_page(request):
     city = request.GET.get("city")
     country = request.GET.get("country")
     
+    if(CitySearchRecord.objects.filter(city_name=city, country_name=country).count() == 0):
+        CitySearchRecord.objects.create(city_name=city, country_name=country)
+        
     try:
 
         weather_info = WeatherBitHelper().get_city_weather(city=city, country=country)["data"][0]

@@ -1,5 +1,5 @@
 """CityByte URL Configuration
-
+ 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
 Examples:
@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+ 
 from search.views import main_page
 from info.views import info_page
-
+ 
 urlpatterns = [
     path('', main_page, name="main_page"),
+    path("accounts/", include("django.contrib.auth.urls")), 
     path('city', info_page, name="info_page"),
     path('admin/', admin.site.urls),
     path('api/search/', include(("search.urls", "search"), namespace="search")),

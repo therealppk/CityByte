@@ -15,6 +15,7 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Count
+
  
 @login_required()
 def addTofav(request):
@@ -170,3 +171,4 @@ def profile_page(request):
     popularCities = CitySearchRecord.objects.values('city_name').annotate(city_count=Count('city_name')).order_by('-city_count')[:10]
  
     return render(request, "profile/profile.html", {"favCities": favCities, "popularCities": popularCities})
+

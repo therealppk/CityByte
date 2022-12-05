@@ -1,4 +1,35 @@
-# CityByte 
+# CityByte Project 2
+![](https://img.shields.io/github/issues-raw/rohitgeddam/CityByte) ![](https://img.shields.io/github/issues-closed-raw/rohitgeddam/CityByte)
+
+## Introduction
+New and improved! Add more description here...
+
+Below are the new features and improvements we made:
+1. Implemented a wish list/to-go list to save interesting locations so you can come back and look at them later
+2. Implement Caching to get API results faster
+3. Created a signup/login page - having an account goes a long way when we add new features that are customized for the user!
+4. Comment Page - you can comment on the place and look at all the other comments that have been posted!
+5. Fixed WeatherApi Bug
+
+## Old Project
+Below is a video of the old project:
+
+[<img width="902" alt="image" src="https://user-images.githubusercontent.com/46688470/204404965-d3084c6c-b062-4eec-8b10-0ef95a577bd6.png">](https://drive.google.com/file/d/1FVJDir9ZufbAiUGe7AfzZvTfF7HWr58e/view?usp=sharing)
+
+
+## New Project
+Below is a video of the significant improvements we made:
+Add video here
+
+## Team Members
+1. Rohit Geddam: sgeddam2@ncsu.edu
+2. Arun Kumar Ramesh - arames25@ncsu.edu
+3. Kiron Jayesh - kjayesh@ncsu.edu
+4. Sai Krishna Teja Varma - smanthe@ncsu.edu
+5. Shandler Mason - samason4@ncsu.edu
+
+
+# CityByte Project 1
 
 
 [![DOI](https://zenodo.org/badge/541612969.svg)](https://zenodo.org/badge/latestdoi/541612969) ![](https://img.shields.io/github/license/therealppk/CityByte) ![](https://img.shields.io/github/issues/therealppk/CityByte?style=plastic) ![](https://img.shields.io/github/issues-closed-raw/therealppk/CityByte?style=plastic) ![](https://img.shields.io/github/languages/code-size/therealppk/CityByte?style=plastic) ![](https://img.shields.io/github/contributors/therealppk/CityByte?style=plastic) [![Django CI](https://github.com/therealppk/CityByte/actions/workflows/django.yml/badge.svg)](https://github.com/therealppk/CityByte/actions/workflows/django.yml)

@@ -24,4 +24,4 @@ jobs:
       - name: Lint with flake8
         run: |
           # stop the build if there are Python syntax errors or undefined names
-          flake8 ./src
+          flake8 --ignore=E501,E203,E266,E501,W503,F403,F401,E722,F811,F401,W503,E722 .

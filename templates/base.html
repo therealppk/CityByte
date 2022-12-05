@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
  
 <body>
@@ -22,7 +23,16 @@
  
     </style>
  
- 
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <div class="alert alert-primary" role="alert">
+                {{ message }}
+              </div>
+            <!-- <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li> -->
+            {% endfor %}
+        </ul>
+        {% endif %}
  
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" href="#" style="font-size: 3rem; font-weight: bolder; padding: 1rem 3rem;">
@@ -42,10 +52,10 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false" style="font-size: 2rem; font-weight: bolder; padding: 1rem 3rem;">
-                        {{user.username}}
+                        {{user.username|title}}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="{% url 'profile_page' %}">Profile</a>
                         <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                     </div>
                 </li>
@@ -70,3 +80,9 @@
     crossorigin="anonymous"></script>
  
 </html>
+ 
+ 
+
+ 
+ 
+

@@ -7,8 +7,10 @@ from django.views.decorators.http import require_http_methods
 from info.helpers.places import FourSquarePlacesHelper
 from info.helpers.weather import WeatherBitHelper
 from search.helpers.photo import UnplashCityPhotoHelper
-from .models import CitySearchRecord
+from .models import CitySearchRecord, Comment
 from django.core.cache import cache
+from .forms import CommentForm
+
 
 
 @require_http_methods(["GET"])
@@ -23,10 +25,24 @@ def place_photo(request):
     return redirect(photo_link)
 
 
-@require_http_methods(["GET"])
+@require_http_methods(["GET", "POST"])
 def info_page(request):
     city = request.GET.get("city")
     country = request.GET.get("country")
+
+    if request.method == "POST":
+        commentForm = CommentForm(request.POST)
+
+        if commentForm.is_valid():
+            # save the form data to model
+            form = commentForm.save(commit=False)
+            form.author = request.user
+            form.city = city
+            form.country = country
+            print(form)
+            form.save()
+
+    commentForm = CommentForm()
 
     if (
         CitySearchRecord.objects.filter(city_name=city, country_name=country).count()
@@ -96,6 +112,8 @@ def info_page(request):
         photo_link = UnplashCityPhotoHelper().get_city_photo(city=city)
         cache.set(f"{city}-photolink", photo_link)
 
+    comments = Comment.objects.filter(city=city, country=country).order_by('-created_on')
+    
     return render(
         request,
         "search/city_info.html",
@@ -106,5 +124,9 @@ def info_page(request):
             "outdoor_info": outdoor_info,
             "arts_info": arts_info,
             "photo_link": photo_link,
+            "comments": comments,
+            "commentForm": commentForm,
+            'city': city,
+            'country': country
         },
     )

@@ -46,5 +46,3 @@ jobs:
       uses: codecov/codecov-action@v2
       with:
         token: 3ad2c88d-e733-429b-962e-bc9db2760b01
-    - name: lint with flake
-      run: flake8 --ignore=E501,E203, E266, E501, W503, F403, F401, E722, F811, F401, W503, E722

@@ -25,14 +25,14 @@ def place_photo(request):
     return redirect(photo_link)
 
 
-@require_http_methods(["GET"])
+@require_http_methods(["GET", "POST"])
 def info_page(request):
     city = request.GET.get("city")
     country = request.GET.get("country")
 
     if request.method == "POST":
         commentForm = CommentForm(request.POST)
- 
+
         if commentForm.is_valid():
             # save the form data to model
             form = commentForm.save(commit=False)
@@ -41,8 +41,7 @@ def info_page(request):
             form.country = country
             print(form)
             form.save()
- 
- 
+
     commentForm = CommentForm()
 
     if (

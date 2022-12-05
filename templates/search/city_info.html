@@ -246,10 +246,10 @@
  
     {% endif %}
  
-    {% if comments%}
     <div class="container" id="comments" style="padding: 4px;">
         <h1>Comments</h1>
         <hr>
+
         <!-- add comment box -->
         <form method="post" action="{% url 'info_page' %}?city={{ city }}&country={{country}}">
             <!-- <textarea style="width: 100%; max-width: 100%;" id="comment" placeholder="Type your comment here"></textarea> -->
@@ -257,6 +257,9 @@
             {{commentForm|crispy}}
             <button class="btn btn-large btn-primary">Comment</button>
         </form>
+
+    {% if comments%}
+
         <hr>
         <div>
         {% for comment in comments %}
@@ -268,9 +271,9 @@
         </div>
         {% endfor %}
         </div>
+        {% endif %}
  
     </div>
-    {% endif %}
  
 </div>
  

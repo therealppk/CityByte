@@ -31,8 +31,10 @@ jobs:
         AMADEUS_API_SECRET_KEY: ${{ secrets.AMADEUS_API_SECRET_KEY }}
         AMADEUS_API_KEY: ${{ secrets.AMADEUS_API_KEY }}
         GEODB_X_RAPID_API_KEY: ${{ secrets.GEODB_X_RAPID_API_KEY }}
+        GEODB_X_RAPID_API_HOST: ${{ secrets.GEODB_X_RAPID_API_HOST }}
         UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
         WEATHER_BIT_X_RAPID_API_KEY: ${{ secrets.WEATHER_BIT_X_RAPID_API_KEY }}
+        WEATHER_BIT_X_RAPID_API_HOST: ${{ secrets.WEATHER_BIT_X_RAPID_API_HOST }}
         FOURSQUARE_API_KEY: ${{ secrets.FOURSQUARE_API_KEY }}
       run: |
         python manage.py test

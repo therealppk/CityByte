@@ -22,16 +22,18 @@ class FourSquare(PlacesUtilBase):
         params.update(kwargs)
 
         response = requests.request(
-            "GET", str(self._url.get_url(path="/v3/places/search")),
+            "GET",
+            str(self._url.get_url(path="/v3/places/search")),
             headers=self._url.with_default_headers(),
-            params=params
+            params=params,
         )
 
         return response.json()
 
     def get_place_photo(self, fsq_id: str, **kwargs):
         response = requests.request(
-            "GET", str(self._url.get_url(path=f"/v3/places/{fsq_id}/photos")),
+            "GET",
+            str(self._url.get_url(path=f"/v3/places/{fsq_id}/photos")),
             headers=self._url.with_default_headers(),
             params=self._url.with_default_params(),
         )
@@ -40,7 +42,5 @@ class FourSquare(PlacesUtilBase):
             photo_data = response.json()[0]
         except:
             return "https://picsum.photos/200"
-            
-        
 
         return f"{photo_data['prefix']}250x250{photo_data['suffix']}"

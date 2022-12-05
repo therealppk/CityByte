@@ -1,15 +1,15 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <title>CityByte</title>
-
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-
+{% extends '../base.html' %}
+{% load crispy_forms_tags %}
+ 
+{% block title %}City{% endblock %}
+ 
+ 
+{% block content %}
+ 
+ 
+ 
+ 
+ 
     <style>
         body {
             padding: 0;
@@ -18,37 +18,37 @@
             background-color: #36453b;
             color: #f5f9e9;
         }
-
+ 
         .card {
             background-color: #596869;
             color: #f5f9e9;
             border: none;
             margin: 1rem;
         }
-
+ 
         .card:hover {
             background-color: #f5f9e9;
             color: #515751;
         }
-
+ 
         #weather > .card-text {
             font-size: medium;
             font-weight: bolder;
         }
-
+ 
         #weather > .card-subtitle {
             font-size: x-small;
         }
-
+ 
         .card-text {
             font-size: 1rem;
             font-weight: bolder;
         }
-
+ 
         .card-title {
             font-size: 0.75rem;
         }
-
+ 
         .list-group, .list-group-item {
             color: inherit;
             background-color: transparent;
@@ -56,18 +56,10 @@
             border: none;
         }
     </style>
-
-</head>
-<body>
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-
-<nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="{% url 'main_page' %}" style="font-size: 3rem; font-weight: bolder; padding: 1rem 3rem;">
-        &#8592;&nbsp;CityByte
-    </a>
-</nav>
-
+ 
+ 
+ 
+ 
 <div class="container-fluid" style="padding: 0;">
     <div class="p-5 text-center bg-image" style="background-image: url('{{ photo_link }}'); background-size: cover; background-position: center; height: 50vh;">
         <div class="mask">
@@ -81,8 +73,8 @@
             </div>
         </div>
     </div>
-
-
+ 
+ 
     {% if weather_info %}
     <div class="d-flex flex-wrap" style="margin: 1rem;">
         <div class="card text-center">
@@ -188,10 +180,10 @@
             </div>
         </div>
     </div>
-
+ 
     {% endif %}
-   
-
+ 
+ 
     <h2 style="margin: 4rem 0 1rem 1rem;">Top Rated Dining Spots</h2>
     <div class="d-flex flex-wrap" style="margin: 1rem;">
         {% for place in dining_info.results %}
@@ -238,7 +230,7 @@
         {% endfor %}
     </div>
     {% if airport_info.results %}
-
+ 
             <h2 style="margin: 4rem 0 1rem 1rem;">Airports</h2>
             <div class="d-flex flex-wrap" style="margin: 1rem;">
                 {% for place in airport_info.results %}
@@ -251,10 +243,35 @@
                     </div>
                 {% endfor %}
             </div>
-
+ 
     {% endif %}
-
-
+ 
+    {% if comments%}
+    <div class="container" id="comments" style="padding: 4px;">
+        <h1>Comments</h1>
+        <hr>
+        <!-- add comment box -->
+        <form method="post" action="{% url 'info_page' %}?city={{ city }}&country={{country}}">
+            <!-- <textarea style="width: 100%; max-width: 100%;" id="comment" placeholder="Type your comment here"></textarea> -->
+            {% csrf_token %}
+            {{commentForm|crispy}}
+            <button class="btn btn-large btn-primary">Comment</button>
+        </form>
+        <hr>
+        <div>
+        {% for comment in comments %}
+        <div>
+            <p><b>{{comment.author.username|title}}</b></p>
+            <p>{{comment.comment}}</p>
+            <p>{{comment.created_on}}</p>
+            <hr>
+        </div>
+        {% endfor %}
+        </div>
+ 
+    </div>
+    {% endif %}
+ 
 </div>
-</body>
-</html>
+ 
+{% endblock %}

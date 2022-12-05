@@ -52,7 +52,7 @@
                 <div class="card-header">
                     Top 10 Popular Cities
                 </div>
-                {% if favCities %}
+                {% if popularCities %}
                 <ul class="list-group list-group-flush">
                     {% for city in popularCities %}
                         <li class="list-group-item"><a href="{% url 'info_page' %}?city={{city.city_name}}&country={{city.country_name}}">{{city.city_name}}, {{city.country_name}}</a></li>

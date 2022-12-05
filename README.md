@@ -5,11 +5,11 @@
 New and improved! Add more description here...
 
 Below are the new features and improvements we made:
-1. New Feature: Implemented a wish list to save interesting locations so you can come back and look at them later
-2. Y
-3. Z
-4. A
-5. B
+1. Implemented a wish list/to-go list to save interesting locations so you can come back and look at them later
+2. Implement Caching to get API results faster
+3. Created a signup/login page - having an account goes a long way when we add new features that are customized for the user!
+4. Comment Page - you can comment on the place and look at all the other comments that have been posted!
+5. Fixed WeatherApi Bug
 
 ## Old Project
 Below is a video of the old project:
@@ -22,11 +22,11 @@ Below is a video of the significant improvements we made:
 Add video here
 
 ## Team Members
-1. Shandler Mason - samason4
-2. A
-3. B
-4. C
-5. D
+1. Rohit Geddam: sgeddam2@ncsu.edu
+2. Arun Kumar Ramesh - arames25@ncsu.edu
+3. Kiron Jayesh - kjayesh@ncsu.edu
+4. Sai Krishna Teja Varma - smanthe@ncsu.edu
+5. Shandler Mason - samason4@ncsu.edu
 
 
 # CityByte Project 1

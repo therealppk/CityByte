@@ -55,7 +55,26 @@
             margin: 0;
             border: none;
         }
+ 
+        .checked {
+            color: orange;
+        }
+ 
+        .fav{
+            font-size: 3rem;
+            position: absolute;
+            top: 15%;
+            right: 0;
+            margin: 16px;
+            cursor: pointer;
+        }
+ 
+        .fav:hover{
+            transform: scale(1.2);
+        }
     </style>
+ 
+ 
  
  
  
@@ -74,7 +93,9 @@
         </div>
     </div>
  
- 
+    <div style="width: 100%;">
+       <span class="fa fa-regular fa-heart fav" id="fav-toggle" onClick="favToggle(event)"></span>
+    </div>
     {% if weather_info %}
     <div class="d-flex flex-wrap" style="margin: 1rem;">
         <div class="card text-center">
@@ -249,7 +270,7 @@
     <div class="container" id="comments" style="padding: 4px;">
         <h1>Comments</h1>
         <hr>
-
+ 
         <!-- add comment box -->
         <form method="post" action="{% url 'info_page' %}?city={{ city }}&country={{country}}">
             <!-- <textarea style="width: 100%; max-width: 100%;" id="comment" placeholder="Type your comment here"></textarea> -->
@@ -257,9 +278,9 @@
             {{commentForm|crispy}}
             <button class="btn btn-large btn-primary">Comment</button>
         </form>
-
+ 
     {% if comments%}
-
+ 
         <hr>
         <div>
         {% for comment in comments %}
@@ -276,5 +297,28 @@
     </div>
  
 </div>
+ 
+ 
+<script>
+    // if in fav list remove checked else keep it
+ 
+    var favBtn = document.getElementById("fav-toggle");
+    {% if isInFav %}
+        favBtn.classList.toggle("checked");
+        console.log("CHECKED")
+    {% endif %}
+    function favToggle(event){
+        const url = "{% url 'addToFav' %}?city={{city}}&country={{country}}"
+        fetch(url).then(function(response) {
+            return response.json();
+            }).then(function(data) {
+            console.log(data);
+            }).catch(function() {
+            console.log("Booo");
+            });
+        favBtn.classList.toggle("checked");
+ 
+    }
+</script>
  
 {% endblock %}

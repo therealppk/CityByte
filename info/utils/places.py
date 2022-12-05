@@ -36,6 +36,11 @@ class FourSquare(PlacesUtilBase):
             params=self._url.with_default_params(),
         )
 
-        photo_data = response.json()[0]
+        try:
+            photo_data = response.json()[0]
+        except:
+            return "https://picsum.photos/200"
+            
+        
 
         return f"{photo_data['prefix']}250x250{photo_data['suffix']}"

@@ -73,12 +73,17 @@
         <div class="mask">
             <div class="d-flex justify-content-center align-items-center h-100">
                 <div class="text-white">
+                    {% if weather_info %}
                     <h1 style="font-size: 7rem; color: antiquewhite;">{{ weather_info.city_name }}</h1>
                     <h4 class="mb-3">{{ weather_info.state_code }}, {{ weather_info.country_code }}</h4>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
+
+
+    {% if weather_info %}
     <div class="d-flex flex-wrap" style="margin: 1rem;">
         <div class="card text-center">
             <div class="card-body">
@@ -183,6 +188,10 @@
             </div>
         </div>
     </div>
+
+    {% endif %}
+   
+
     <h2 style="margin: 4rem 0 1rem 1rem;">Top Rated Dining Spots</h2>
     <div class="d-flex flex-wrap" style="margin: 1rem;">
         {% for place in dining_info.results %}
@@ -229,19 +238,23 @@
         {% endfor %}
     </div>
     {% if airport_info.results %}
-        <h2 style="margin: 4rem 0 1rem 1rem;">Airports</h2>
-        <div class="d-flex flex-wrap" style="margin: 1rem;">
-            {% for place in airport_info.results %}
-                <div class="card" style="width: 18rem;">
-                    <img src="{% url 'info:place_photo' %}?fsq_id={{ place.fsq_id }}" class="card-img-top" alt="{{ place.name }}">
-                    <div class="card-body">
-                        <h5 class="card-title" style="font-size: 0.75rem">{{ place.name }}</h5>
-                        <p class="card-text" style="font-size: 1rem;">{{ place.location.formatted_address }}</p>
+
+            <h2 style="margin: 4rem 0 1rem 1rem;">Airports</h2>
+            <div class="d-flex flex-wrap" style="margin: 1rem;">
+                {% for place in airport_info.results %}
+                    <div class="card" style="width: 18rem;">
+                        <img class="airport-info-img" src="{% url 'info:place_photo' %}?fsq_id={{ place.fsq_id }}" class="card-img-top" alt="{{ place.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-size: 0.75rem">{{ place.name }}</h5>
+                            <p class="card-text" style="font-size: 1rem;">{{ place.location.formatted_address }}</p>
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
-        </div>
+                {% endfor %}
+            </div>
+
     {% endif %}
+
+
 </div>
 </body>
 </html>

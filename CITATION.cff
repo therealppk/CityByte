@@ -1,18 +1,23 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 authors:
-  family-names: "Gandhi"
-  given-names: "Vishwa"
-- family-names: "Patel"
-  given-names: "Vrushanki"
-  family-names: "Saroj"
-  given-names: "Priya"
-  family-names: "Khawas"
-  given-names: "Pradyumna"
-  family-names: "Shah"
-  given-names: "Nirav"
+- family-names: "Geddam"
+  given-names: "Rohit"
+  orcid: "https://orcid.org/0000-0002-1010-1070"
+- family-names: "Ramesh"
+  given-names: "Arun Kumar"
+  orcid: "https://orcid.org/0000-0002-1949-5926"
+- family-names: "Jayesh"
+  given-names: "Kiron"
+  orcid: "https://orcid.org/0000-0003-4527-0568" 
+- family-names: "Manthena"
+  given-names: "Sai Krishna Teja Varma"
+  orcid: "https://orcid.org/0000-0002-4511-6934"
+- family-names: "Mason"
+  given-names: "Shandler"
+  orcid: "https://orcid.org/0000-0003-0587-4527"
 title: "CityByte"
-version: 1.0.0
+version: 
 doi: 10.5281/zenodo.1234
-date-released: 2022-10-06
-url: "https://github.com/therealppk/CityByte"
+date-released:
+url: "https://github.com/rohitgeddam/CityByte"

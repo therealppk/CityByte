@@ -13,7 +13,7 @@
 
 
 ## Introduction
-New and improved! Add more description here...
+New and improved! Several new features and bug fixes were implemented to show significant improvement from Project 1.
 
 Below are the new features and improvements we made:
 1. Implemented a wish list/to-go list to save interesting locations so you can come back and look at them later

@@ -40,10 +40,7 @@ Add video here
 5. Shandler Mason - samason4@ncsu.edu
 
 
-##
-
-
-##Support
+## Support
 Concerns with the software? Please get in touch with us via one of the methods below. We are delighted to address any queries you may have about the program.
 
 Please contact us if you experience any problems with the program, such as problems with joining up, logging in, or any other functions.

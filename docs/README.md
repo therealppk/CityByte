@@ -154,6 +154,8 @@ If you prefer using Black in VSCode, you can add the below settings in your vsco
 4. Sai Krishna Teja Varma - smanthe@ncsu.edu
 5. Shandler Mason - samason4@ncsu.edu
 
+## Releases
+Previous versions are available from the [GitHub releases](https://github.com/rohitgeddam/CityByte/releases).
 ## Support
 
 Concerns with the software? Please get in touch with us via one of the methods below. We are delighted to address any queries you may have about the program.

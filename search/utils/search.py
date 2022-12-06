@@ -23,9 +23,12 @@ class GeoDB(SearchUtilBase):
         limit = kwargs.get("limit", 10)
 
         response = requests.request(
-            "GET", str(self._url.get_url(path="/v1/geo/cities")),
+            "GET",
+            str(self._url.get_url(path="/v1/geo/cities")),
             headers=self._url.with_default_headers(),
-            params=self._url.with_default_headers({"namePrefix": city, "offset": offset, "limit": limit})
+            params=self._url.with_default_headers(
+                {"namePrefix": city, "offset": offset, "limit": limit}
+            ),
         )
 
         return response.json()
@@ -44,24 +47,35 @@ class AmadeusCitySearch(SearchUtilBase):
 
         while not success:
             response = requests.request(
-                "GET", str(self._url.get_url(path="/v1/reference-data/locations/cities")),
-                headers={
-                    "Authorization": f"Bearer {self._access_token}"
-                },
-                params=params
+                "GET",
+                str(
+                    self._url.get_url(
+                        path="/v1/reference-data/locations/cities"
+                    )
+                ),
+                headers={"Authorization": f"Bearer {self._access_token}"},
+                params=params,
             )
 
-            if response.json().get("errors") and response.json()["errors"][0]["status"] == 401:
+            if (
+                response.json().get("errors")
+                and response.json()["errors"][0]["status"] == 401
+            ):
                 response = requests.request(
-                    "POST", str(self._url.get_url(path="/v1/security/oauth2/token")),
+                    "POST",
+                    str(self._url.get_url(path="/v1/security/oauth2/token")),
                     headers={
                         "Content-Type": "application/x-www-form-urlencoded"
                     },
                     data={
                         "grant_type": "client_credentials",
-                        "client_id": settings.AMADEUS_CONFIG["headers"]["API_KEY"],
-                        "client_secret": settings.AMADEUS_CONFIG["headers"]["API_SECRET_KEY"],
-                    }
+                        "client_id": settings.AMADEUS_CONFIG["headers"][
+                            "API_KEY"
+                        ],
+                        "client_secret": settings.AMADEUS_CONFIG["headers"][
+                            "API_SECRET_KEY"
+                        ],
+                    },
                 )
 
                 self._access_token = response.json()["access_token"]

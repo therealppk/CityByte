@@ -1,5 +1,6 @@
 from locust import HttpUser, task
 
+
 class LoadTestCityInfo(HttpUser):
     @task
     def post_detail(self):

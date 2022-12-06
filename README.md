@@ -33,7 +33,8 @@ Add video here
 
 
 [![DOI](https://zenodo.org/badge/541612969.svg)](https://zenodo.org/badge/latestdoi/541612969) ![](https://img.shields.io/github/license/therealppk/CityByte) ![](https://img.shields.io/github/issues/therealppk/CityByte?style=plastic) ![](https://img.shields.io/github/issues-closed-raw/therealppk/CityByte?style=plastic) ![](https://img.shields.io/github/languages/code-size/therealppk/CityByte?style=plastic) ![](https://img.shields.io/github/contributors/therealppk/CityByte?style=plastic) [![Django CI](https://github.com/therealppk/CityByte/actions/workflows/django.yml/badge.svg)](https://github.com/therealppk/CityByte/actions/workflows/django.yml)
-
+[![codecov](https://codecov.io/gh/therealppk/CityByte/branch/main/graph/badge.svg?token=HRK9X7OI2J)](https://codecov.io/gh/therealppk/CityByte)
+![](https://github.com/therealppk/CityByte/blob/main/docs/assets/code_coverage.png)
 
 
 <p align="center">
@@ -67,11 +68,6 @@ The below screenshots give the glance of the working of our project:
 
 ## Deployment:
 This project is deployed on AWS and is live at http://3.88.233.194:8000/
-
-## Code Coverage
-[![codecov](https://codecov.io/gh/therealppk/CityByte/branch/main/graph/badge.svg?token=HRK9X7OI2J)](https://codecov.io/gh/therealppk/CityByte)
-
-![](https://github.com/therealppk/CityByte/blob/main/docs/assets/code_coverage.png)
 
 ## Future Scope
 * Caching results from API using Redis in order to improve the performance.

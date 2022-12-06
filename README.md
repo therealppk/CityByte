@@ -1,8 +1,19 @@
 # CityByte Project 2
-![](https://img.shields.io/github/issues-raw/rohitgeddam/CityByte) ![](https://img.shields.io/github/issues-closed-raw/rohitgeddam/CityByte)
+
+[![Test](https://github.com/rohitgeddam/CityByte/actions/workflows/django.yml/badge.svg)](https://github.com/rohitgeddam/CityByte/actions/workflows/django.yml)
+[![codecov](https://codecov.io/gh/rohitgeddam/CityByte/branch/main/graph/badge.svg)](https://codecov.io/gh/rohitgeddam/CityByte)
+[![code_size](https://img.shields.io/github/languages/code-size/rohitgeddam/CityByte)](https://github.com/rohitgeddam/CityByte) 
+[![repo_size](https://img.shields.io/github/repo-size/rohitgeddam/CityByte)](https://github.com/rohitgeddam/CityByte)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7155519.svg)](https://doi.org/10.5281/zenodo.7155519)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub issues](https://img.shields.io/github/issues/rohitgeddam/CityByte.svg)](https://GitHub.com/rohitgeddam/CityByte/issues/)
+[![GitHub issues-closed](https://img.shields.io/github/issues-closed/rohitgeddam/CityByte.svg)](https://GitHub.com/rohitgeddam/CityByte/issues?q=is%3Aissue+is%3Aclosed)
+[![GitHub version](https://img.shields.io/github/v/release/rohitgeddam/CityByte)](https://github.com/rohitgeddam/CityByte/releases)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 
 ## Introduction
-New and improved! Add more description here...
+New and improved! Several new features and bug fixes were implemented to show significant improvement from Project 1.
 
 Below are the new features and improvements we made:
 1. Implemented a wish list/to-go list to save interesting locations so you can come back and look at them later
@@ -10,8 +21,9 @@ Below are the new features and improvements we made:
 3. Created a signup/login page - having an account goes a long way when we add new features that are customized for the user!
 4. Comment Page - you can comment on the place and look at all the other comments that have been posted!
 5. Fixed WeatherApi Bug
+6. Implemented social media page and support contact information
 
-## Old Project
+## Old Project - In Brief
 Below is a video of the old project:
 
 [<img width="902" alt="image" src="https://user-images.githubusercontent.com/46688470/204404965-d3084c6c-b062-4eec-8b10-0ef95a577bd6.png">](https://drive.google.com/file/d/1FVJDir9ZufbAiUGe7AfzZvTfF7HWr58e/view?usp=sharing)
@@ -28,6 +40,19 @@ Add video here
 4. Sai Krishna Teja Varma - smanthe@ncsu.edu
 5. Shandler Mason - samason4@ncsu.edu
 
+
+## Support
+Concerns with the software? Please get in touch with us via one of the methods below. We are delighted to address any queries you may have about the program.
+
+Please contact us if you experience any problems with the program, such as problems with joining up, logging in, or any other functions.
+
+<a href = "mailto:citybyte.support@proton.me">
+<img width = "35px" src = "https://user-images.githubusercontent.com/73664200/194786335-12b1d3a6-b272-4896-9bd7-d615e28847f3.png"/>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href = "https://twitter.com/CityByteSupport">  
+<img width = "35px" src = "https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/twitter.svg"/>
+</a> 
 
 # CityByte Project 1
 

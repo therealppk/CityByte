@@ -106,9 +106,6 @@ We use GitHub actions to automate tasks of linting, code coverage, build, tests,
 
 Unit test are performed everytime there is a push or pull into the repository. They are present in `/search/tests.py`. 
 
-### How to build docs
-
-
 ### Code Coverage: 
 
 Code Coverage is an important metric that allows us to understand how much of the codebase is tested. `django.yml` performs this task. For more information about Code Coverage, please visit this [link](https://www.atlassian.com/continuous-delivery/software-testing/code-coverage). 
@@ -126,7 +123,7 @@ flake8 <directory>
 ### Black - Code Formatter
 
 We are using the Black code formatter to format our code before pushing it to GitHub. For more information about Black, please visit this [link](https://black.readthedocs.io/en/stable/).
-
+Config file in `pyproject.toml`.
 
 Run the line below everytime you push to GitHub.</br>
 ```
@@ -151,7 +148,7 @@ If you prefer using Black in VSCode, you can add the below settings in your vsco
 <sub>Image from [Ji Miranda](https://ljvmiranda921.github.io/assets/png/tuts/precommit_pipeline.png).<sub>
 
 ## License
-Distributed under the MIT License. See ~LICENSE for more information
+Distributed under the MIT License. See `LICENSE` for more information
 
 ## Team Members
 1. Rohit Geddam: sgeddam2@ncsu.edu

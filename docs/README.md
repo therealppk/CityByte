@@ -153,7 +153,23 @@ If you prefer using Black in VSCode, you can add the below settings in your vsco
 3. Kiron Jayesh - kjayesh@ncsu.edu
 4. Sai Krishna Teja Varma - smanthe@ncsu.edu
 5. Shandler Mason - samason4@ncsu.edu
+   
+## Issue Tracker
+The [GitHub Issue Tracker](https://github.com/rohitgeddam/CityByte/issues) can be used to report bugs or request features. You can also create discussions about an issue or potential features in [GitHub Discussions](https://github.com/rohitgeddam/CityByte/discussions).
 
+## Troubleshooting
+If you come across any error where requirements are not met, run the following command in the project directory:
+```
+pip install -r requirements.txt
+```
+If you do not make migrations after adding another field to the model, you will face an error, ensure you run the followning commands:
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+If you are facing any lint issues, ensure you have performed the pre-commit hook as mentioned in the quickstart guide.
+## Releases
+Previous versions are available from the [GitHub releases](https://github.com/rohitgeddam/CityByte/releases).
 ## Support
 
 Concerns with the software? Please get in touch with us via one of the methods below. We are delighted to address any queries you may have about the program.

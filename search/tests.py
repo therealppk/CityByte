@@ -41,7 +41,7 @@ class CityByte_testcase(TestCase):
         meta = site.info()
         if meta["content-type"] in image_formats:
             assert True
-
+            
     def test_info_page(self):
         city = "New York City"
         country = "US"

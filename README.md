@@ -22,7 +22,7 @@ Below are the new features and improvements we made:
 4. Comment Page - you can comment on the place and look at all the other comments that have been posted!
 5. Fixed WeatherApi Bug
 
-## Old Project
+## Old Project - In Brief
 Below is a video of the old project:
 
 [<img width="902" alt="image" src="https://user-images.githubusercontent.com/46688470/204404965-d3084c6c-b062-4eec-8b10-0ef95a577bd6.png">](https://drive.google.com/file/d/1FVJDir9ZufbAiUGe7AfzZvTfF7HWr58e/view?usp=sharing)

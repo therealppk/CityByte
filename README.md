@@ -1,8 +1,65 @@
-# CityByte 
+# CityByte Project 2
+
+[![Test](https://github.com/rohitgeddam/CityByte/actions/workflows/django.yml/badge.svg)](https://github.com/rohitgeddam/CityByte/actions/workflows/django.yml)
+[![codecov](https://codecov.io/gh/rohitgeddam/CityByte/branch/main/graph/badge.svg)](https://codecov.io/gh/rohitgeddam/CityByte)
+[![code_size](https://img.shields.io/github/languages/code-size/rohitgeddam/CityByte)](https://github.com/rohitgeddam/CityByte) 
+[![repo_size](https://img.shields.io/github/repo-size/rohitgeddam/CityByte)](https://github.com/rohitgeddam/CityByte)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7155519.svg)](https://doi.org/10.5281/zenodo.7155519)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub issues](https://img.shields.io/github/issues/rohitgeddam/CityByte.svg)](https://GitHub.com/rohitgeddam/CityByte/issues/)
+[![GitHub issues-closed](https://img.shields.io/github/issues-closed/rohitgeddam/CityByte.svg)](https://GitHub.com/rohitgeddam/CityByte/issues?q=is%3Aissue+is%3Aclosed)
+[![GitHub version](https://img.shields.io/github/v/release/rohitgeddam/CityByte)](https://github.com/rohitgeddam/CityByte/releases)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+
+## Introduction
+New and improved! Several new features and bug fixes were implemented to show significant improvement from Project 1.
+
+Below are the new features and improvements we made:
+1. Implemented a wish list/to-go list to save interesting locations so you can come back and look at them later
+2. Implement Caching to get API results faster
+3. Created a signup/login page - having an account goes a long way when we add new features that are customized for the user!
+4. Comment Page - you can comment on the place and look at all the other comments that have been posted!
+5. Fixed WeatherApi Bug
+6. Implemented social media page and support contact information
+
+## Old Project - In Brief
+Below is a video of the old project:
+
+[<img width="902" alt="image" src="https://user-images.githubusercontent.com/46688470/204404965-d3084c6c-b062-4eec-8b10-0ef95a577bd6.png">](https://drive.google.com/file/d/1FVJDir9ZufbAiUGe7AfzZvTfF7HWr58e/view?usp=sharing)
+
+
+## New Project
+Below is a video of the significant improvements we made:
+Add video here
+
+## Team Members
+1. Rohit Geddam: sgeddam2@ncsu.edu
+2. Arun Kumar Ramesh - arames25@ncsu.edu
+3. Kiron Jayesh - kjayesh@ncsu.edu
+4. Sai Krishna Teja Varma - smanthe@ncsu.edu
+5. Shandler Mason - samason4@ncsu.edu
+
+
+## Support
+Concerns with the software? Please get in touch with us via one of the methods below. We are delighted to address any queries you may have about the program.
+
+Please contact us if you experience any problems with the program, such as problems with joining up, logging in, or any other functions.
+
+<a href = "mailto:citybyte.support@proton.me">
+<img width = "35px" src = "https://user-images.githubusercontent.com/73664200/194786335-12b1d3a6-b272-4896-9bd7-d615e28847f3.png"/>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href = "https://twitter.com/CityByteSupport">  
+<img width = "35px" src = "https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/twitter.svg"/>
+</a> 
+
+# CityByte Project 1
 
 
 [![DOI](https://zenodo.org/badge/541612969.svg)](https://zenodo.org/badge/latestdoi/541612969) ![](https://img.shields.io/github/license/therealppk/CityByte) ![](https://img.shields.io/github/issues/therealppk/CityByte?style=plastic) ![](https://img.shields.io/github/issues-closed-raw/therealppk/CityByte?style=plastic) ![](https://img.shields.io/github/languages/code-size/therealppk/CityByte?style=plastic) ![](https://img.shields.io/github/contributors/therealppk/CityByte?style=plastic) [![Django CI](https://github.com/therealppk/CityByte/actions/workflows/django.yml/badge.svg)](https://github.com/therealppk/CityByte/actions/workflows/django.yml)
-
+[![codecov](https://codecov.io/gh/therealppk/CityByte/branch/main/graph/badge.svg?token=HRK9X7OI2J)](https://codecov.io/gh/therealppk/CityByte)
+![](https://github.com/therealppk/CityByte/blob/main/docs/assets/code_coverage.png)
 
 
 <p align="center">
@@ -36,11 +93,6 @@ The below screenshots give the glance of the working of our project:
 
 ## Deployment:
 This project is deployed on AWS and is live at http://3.88.233.194:8000/
-
-## Code Coverage
-[![codecov](https://codecov.io/gh/therealppk/CityByte/branch/main/graph/badge.svg?token=HRK9X7OI2J)](https://codecov.io/gh/therealppk/CityByte)
-
-![](https://github.com/therealppk/CityByte/blob/main/docs/assets/code_coverage.png)
 
 ## Future Scope
 * Caching results from API using Redis in order to improve the performance.

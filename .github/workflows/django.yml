@@ -26,13 +26,17 @@ jobs:
         python -m pip install --upgrade pip
         pip install coverage
         pip install -r requirements.txt
+    - name: actions-setup-redis
+      uses: shogo82148/actions-setup-redis@v1.19.4
     - name: Run Tests
       env:
         AMADEUS_API_SECRET_KEY: ${{ secrets.AMADEUS_API_SECRET_KEY }}
         AMADEUS_API_KEY: ${{ secrets.AMADEUS_API_KEY }}
         GEODB_X_RAPID_API_KEY: ${{ secrets.GEODB_X_RAPID_API_KEY }}
+        GEODB_X_RAPID_API_HOST: ${{ secrets.GEODB_X_RAPID_API_HOST }}
         UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
         WEATHER_BIT_X_RAPID_API_KEY: ${{ secrets.WEATHER_BIT_X_RAPID_API_KEY }}
+        WEATHER_BIT_X_RAPID_API_HOST: ${{ secrets.WEATHER_BIT_X_RAPID_API_HOST }}
         FOURSQUARE_API_KEY: ${{ secrets.FOURSQUARE_API_KEY }}
       run: |
         python manage.py test
@@ -44,5 +48,3 @@ jobs:
       uses: codecov/codecov-action@v2
       with:
         token: 3ad2c88d-e733-429b-962e-bc9db2760b01
-    - name: lint with flake
-      run: flake8 --ignore=E501

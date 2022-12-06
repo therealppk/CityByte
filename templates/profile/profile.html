@@ -1,0 +1,73 @@
+{% extends '../base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Profile Page{% endblock %}
+ 
+ 
+{% block content %}
+ 
+<style>
+    .container {
+        color: white;
+        font-size: 2rem;
+    }
+ 
+    .lists-container {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+ 
+    .list-card{
+        font-size: 1rem;
+        color: black;
+    }
+</style>
+ 
+<div class="container">
+    <h1 style="text-align: center;">Hi, {{user.username|title}}</h1>
+ 
+    <div class="lists-container">
+ 
+        <div class="card list-card" style="width: 18rem;">
+            <div class="card-header">
+                Your Favourite Cities
+            </div>
+            {% if favCities %}
+            <ul class="list-group list-group-flush">
+                {% for city in favCities %}
+                    <li class="list-group-item"><a href="{% url 'info_page' %}?city={{city.city}}&country={{city.country}}">{{city.city}}, {{city.country}}</a></li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <ul class="list-group list-group-flush">
+ 
+                    <li class="list-group-item">You dont't have any fav cities. Commonn mannn!!</li>
+ 
+            </ul>
+            {% endif %}
+        </div>
+ 
+        <div>
+            <div class="card list-card" style="width: 18rem;">
+                <div class="card-header">
+                    Top 10 Popular Cities
+                </div>
+                {% if popularCities %}
+                <ul class="list-group list-group-flush">
+                    {% for city in popularCities %}
+                        <li class="list-group-item"><a href="{% url 'info_page' %}?city={{city.city_name}}&country={{city.country_name}}">{{city.city_name}}, {{city.country_name}}</a></li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <ul class="list-group list-group-flush">
+ 
+                        <li class="list-group-item">Damm, People are not going to places!!</li>
+ 
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+ 
+    </div>
+</div>
+{% endblock %}

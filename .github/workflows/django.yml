@@ -26,6 +26,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install coverage
         pip install -r requirements.txt
+    - name: actions-setup-redis
+      uses: shogo82148/actions-setup-redis@v1.19.4
     - name: Run Tests
       env:
         AMADEUS_API_SECRET_KEY: ${{ secrets.AMADEUS_API_SECRET_KEY }}

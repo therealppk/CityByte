@@ -31,16 +31,18 @@ def fullsplit(path, result=None):
     if result is None:
         result = []
     head, tail = os.path.split(path)
-    if head == '':
+    if head == "":
         return [tail] + result
     if head == path:
         return result
     return fullsplit(head, [tail] + result)
 
 
-EXCLUDE_FROM_PACKAGES = ['django.conf.project_template',
-                         'django.conf.app_template',
-                         'django.bin']
+EXCLUDE_FROM_PACKAGES = [
+    "django.conf.project_template",
+    "django.conf.app_template",
+    "django.bin",
+]
 
 
 def is_package(package_name):
@@ -55,65 +57,68 @@ def is_package(package_name):
 packages, package_data = [], {}
 
 root_dir = os.path.dirname(__file__)
-if root_dir != '':
+if root_dir != "":
     os.chdir(root_dir)
-django_dir = 'django'
+django_dir = "django"
 
 for dirpath, dirnames, filenames in os.walk(django_dir):
     # Ignore PEP 3147 cache dirs and those whose names start with '.'
-    dirnames[:] = [d for d in dirnames if not d.startswith('.') and d != '__pycache__']
+    dirnames[:] = [
+        d for d in dirnames if not d.startswith(".") and d != "__pycache__"
+    ]
     parts = fullsplit(dirpath)
-    package_name = '.'.join(parts)
-    if '__init__.py' in filenames and is_package(package_name):
+    package_name = ".".join(parts)
+    if "__init__.py" in filenames and is_package(package_name):
         packages.append(package_name)
     elif filenames:
         relative_path = []
-        while '.'.join(parts) not in packages:
+        while ".".join(parts) not in packages:
             relative_path.append(parts.pop())
         relative_path.reverse()
         path = os.path.join(*relative_path)
-        package_files = package_data.setdefault('.'.join(parts), [])
+        package_files = package_data.setdefault(".".join(parts), [])
         package_files.extend([os.path.join(path, f) for f in filenames])
 
 
 # Dynamically calculate the version based on django.VERSION.
-version = __import__('django').get_version()
+version = __import__("django").get_version()
 
 
 setup(
-    name='CityByte',
+    name="CityByte",
     version=version,
-    url='https://github.com/therealppk/CityByte',
-    author='Pradyumna Khawas',
-    author_email='pradyumna.khawas@gmail.com',
-    description=('A website made using Django'),
-    license='MIT',
+    url="https://github.com/therealppk/CityByte",
+    author="Pradyumna Khawas",
+    author_email="pradyumna.khawas@gmail.com",
+    description=("A website made using Django"),
+    license="MIT",
     packages=packages,
     package_data=package_data,
-    scripts=['django/bin/django-admin.py'],
+    scripts=["django/bin/django-admin.py"],
     classifiers=[
-        'Development Status :: 3 - Alpha',
-        'Environment :: Web Environment',
-        'Framework :: Django',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT License',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.2',
-        'Programming Language :: Python :: 3.3',
-        'Topic :: Internet :: WWW/HTTP',
-        'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
-        'Topic :: Internet :: WWW/HTTP :: WSGI',
-        'Topic :: Software Development :: Libraries :: Application Frameworks',
-        'Topic :: Software Development :: Libraries :: Python Modules',
+        "Development Status :: 3 - Alpha",
+        "Environment :: Web Environment",
+        "Framework :: Django",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 2",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.2",
+        "Programming Language :: Python :: 3.3",
+        "Topic :: Internet :: WWW/HTTP",
+        "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+        "Topic :: Internet :: WWW/HTTP :: WSGI",
+        "Topic :: Software Development :: Libraries :: Application Frameworks",
+        "Topic :: Software Development :: Libraries :: Python Modules",
     ],
 )
 
 if overlay_warning:
-    sys.stderr.write("""
+    sys.stderr.write(
+        """
 ========
 WARNING!
 ========
@@ -125,4 +130,6 @@ Django. This is known to cause a variety of problems. You
 should manually remove the
 %(existing_path)s
 directory and re-install Django.
-""" % {"existing_path": existing_path})
+"""
+        % {"existing_path": existing_path}
+    )

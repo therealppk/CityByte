@@ -26,9 +26,12 @@ class Unsplash(PhotoUtilBase):
         orientation = kwargs.get("orientation", Unsplash.Orientation.LANDSCAPE)
 
         response = requests.request(
-            "GET", str(self._url.get_url(path="/search/photos")),
+            "GET",
+            str(self._url.get_url(path="/search/photos")),
             headers=self._url.with_default_headers(),
-            params=self._url.with_default_params({"page": page, "orientation": orientation, "query": query})
+            params=self._url.with_default_params(
+                {"page": page, "orientation": orientation, "query": query}
+            ),
         )
 
         return response.json().get("results", [])

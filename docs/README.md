@@ -1,21 +1,190 @@
 
-# CITYBYTES
+# CITYBYTE
 
 ## SOFTWARE CODE DOCUMENTATION
 
-<p align="center">
-    <img width="300" src="https://github.com/therealppk/CityByte/blob/main/docs/assets/images.jfif" alt="NC Logo">
-</p>
+## CityByte Version 2:
 
-## TEAM MEMBERS
+New and improved! Add more description here...
 
-| Name | UnityID |
-|--------|--------|
-|Nirav Shah | nshah28 |
-| Vishwa Gandhi | vgandhi |
-| Pradymna Khawas | ppkhawas | 
-| Vrushanki Patel | vpatel25 |
-| Priya Saroj | pbsaroj | 
+Below are the new features and improvements we made:
+
+1. Implemented a wish-list/to-go list to save interesting locations so you can come back and look at them later
+2. Implement Caching to get API results faster
+3. Created a signup/login page - having an account goes a long way when we add new features that are customized for the user!
+4. Comment Page - you can comment on the place and look at all the other comments that have been posted!
+5. Fixed WeatherApi Bug
+
+## Quick Start
+
+#### 1. Clone the repository:  
+
+   `git clone https://github.com/rohitgeddam/CityByte.git`
+
+#### 2. Setup the virtual environment:  
+    
+`
+    python -m venv venv
+`
+
+
+#### 3. Activate the virtual environment:  
+
+    On Mac/Linux:    
+
+`
+      source venv/bin/activate
+`
+      
+    On Windows:    
+    
+`
+      venv\Scripts\activate
+`
+   
+
+#### 4. Install required modules and libraries:  
+
+`
+    pip install -r requirements.txt
+`
+
+
+#### 5. Create .env file at ./CityByte using the below template.
+   
+```
+    GEODB_X_RAPID_API_KEY=0ebeca3f10msha647955d4a03bd3p16b08bjsn3570b7991a4c
+    GEODB_X_RAPID_API_HOST=wft-geo-db.p.rapidapi.com
+    AMADEUS_API_KEY=eNJXGmjjlYYikHyfAGXRZDGG0q5NaN2q
+    AMADEUS_API_SECRET_KEY=YGgltYGVEjdk1tZ0
+    UNSPLASH_API_KEY=OWiI5nfmGz_dY1-T0m_vCOGqwGzpUo-QeuO2nil8MaY
+    FOURSQUARE_API_KEY="fsq3owEliIvoxcep8TxUmUh35FtlvyZxtIIuOJAXl+A9UlY="
+    WEATHER_BIT_X_RAPID_API_KEY=0ebeca3f10msha647955d4a03bd3p16b08bjsn3570b7991a4c
+    WEATHER_BIT_X_RAPID_API_HOST=weatherbit-v1-mashape.p.rapidapi.com
+```
+Create an account in the below websites to Fetch API keys and use them in the above template.  
+* [GeoDB Cities API](https://rapidapi.com/wirefreethought/api/geodb-cities/details)
+* [Weather API](https://rapidapi.com/weatherbit/api/weather)
+* [Amadeus API](https://developers.amadeus.com/)
+* [Unsplash API](https://unsplash.com/developers)
+* [Foursquare API](https://location.foursquare.com/developer/)  
+
+#### 6. Set-up REDIS
+* Follow the instructions in [Getting Started](https://redis.io/docs/getting-started/) to Install Redis in your local environment.
+* Start the Redis Server: Open a terminal and run the following command:
+```
+   redis-server
+```
+* Open another terminal to start the REDIS CLI:
+```
+   redis-cli
+```
+
+Now, you can run the application.
+#### 7. Run the application:  
+   
+   ``` 
+   python manage.py migrate
+   python manage.py runserver
+   ```
+  
+## After adding another field to Model
+Django's way of propagating changes you make to your models (adding a field, deleting a model, etc.) into your database schema.
+
+   ```
+   python manage.py makemigrations
+   python manage.py migrate
+   ```
+
+## Automatic tools - GitHub Actions
+ 
+We use GitHub actions to automate tasks of linting, code coverage, build, tests, and security checks. The codes that perform these actions are stored as `.yml` files in the `.github/workflows` directory. The GitHub actions are triggered whenever something is pushed (or pulled) into the remote repository. The results of these automated tasks are shown as badges at the top of this README.md file. 
+
+### Unit tests:
+
+Unit test are performed everytime there is a push or pull into the repository. They are present in `/search/tests.py`. 
+
+
+### Code Coverage: 
+
+Code Coverage is an important metric that allows us to understand how much of the codebase is tested. `django.yml` performs this task. For more information about Code Coverage, please visit this [link](https://www.atlassian.com/continuous-delivery/software-testing/code-coverage). 
+
+### Flake8 - Code Linting:
+
+We are using Flake8 for linting and syntax checking, and it is performed by `Linting.yml`. For more information about Flake8, please visit this [link](https://medium.com/python-pandemonium/what-is-flake8-and-why-we-should-use-it-b89bd78073f2).
+Use flake8 before you push code to GitHub. </br>
+Config file present in `setup.cfg`.
+
+```
+flake8 <directory>
+```
+
+### Black - Code Formatter
+
+We are using the Black code formatter to format our code before pushing it to GitHub. For more information about Black, please visit this [link](https://black.readthedocs.io/en/stable/).
+
+
+Run the line below everytime you push to GitHub.</br>
+Config file present in `pyproject.toml`
+```
+black --line-length 120 <filename>
+```
+
+If you prefer using Black in VSCode, you can add the below settings in your vscode settings:
+
+```
+{
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": ["--line-length", "120"],
+    "python.linting.enabled": true
+}
+```
+  
+### Pre Commit Hooks for Black Code formatting and Flake8 Linting
+* run  `pre-commit install`
+* Now everytime you commit, Black and Flake8 will run automatically and will not allow you to push if the code standards are not met.
+<img width="694" alt="Screenshot 2022-10-07 at 11 35 40 AM" src="https://user-images.githubusercontent.com/48797475/194592802-e7d7c951-9694-4260-b537-fc017a5fd06c.png">
+
+<sub>Image from [Ji Miranda](https://ljvmiranda921.github.io/assets/png/tuts/precommit_pipeline.png).<sub>
+
+## Team Members
+1. Rohit Geddam: sgeddam2@ncsu.edu
+2. Arun Kumar Ramesh - arames25@ncsu.edu
+3. Kiron Jayesh - kjayesh@ncsu.edu
+4. Sai Krishna Teja Varma - smanthe@ncsu.edu
+5. Shandler Mason - samason4@ncsu.edu
+   
+## Issue Tracker
+The [GitHub Issue Tracker](https://github.com/rohitgeddam/CityByte/issues) can be used to report bugs or request features. You can also create discussions about an issue or potential features in [GitHub Discussions](https://github.com/rohitgeddam/CityByte/discussions).
+
+## Troubleshooting
+If you come across any error where requirements are not met, run the following command in the project directory:
+```
+pip install -r requirements.txt
+```
+If you do not make migrations after adding another field to the model, you will face an error, ensure you run the followning commands:
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+If you are facing any lint issues, ensure you have performed the pre-commit hook as mentioned in the quickstart guide.
+## Releases
+Previous versions are available from the [GitHub releases](https://github.com/rohitgeddam/CityByte/releases).
+## Support
+
+Concerns with the software? Please get in touch with us via one of the methods below. We are delighted to address any queries you may have about the program.
+
+Please contact us if you experience any problems with the program, such as problems with joining up, logging in, or any other functions.
+
+<a href = "mailto:citybyte.support@proton.me">
+<img width = "35px" src = "https://user-images.githubusercontent.com/73664200/194786335-12b1d3a6-b272-4896-9bd7-d615e28847f3.png"/>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href = "https://twitter.com/CityByteSupport">  
+<img width = "35px" src = "https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/twitter.svg"/>
+</a> 
+
+## Project 1 Docs:
 
 ## INTRODUCTION
 
@@ -86,3 +255,13 @@ Test Case 4: test_cityphoto is the test case for testing the UnplashCityPhotoHel
 * Addition of search bar with category filter, that will help the user to search based on his/ her requirements.
 * To run multiple API requests simultaneously, multithreading will be used.
 * Various multiple features about cities can be added as per the user requirements and customer segmentation.
+
+## TEAM MEMBERS
+
+| Name | UnityID |
+|--------|--------|
+|Nirav Shah | nshah28 |
+| Vishwa Gandhi | vgandhi |
+| Pradymna Khawas | ppkhawas | 
+| Vrushanki Patel | vpatel25 |
+| Priya Saroj | pbsaroj | 

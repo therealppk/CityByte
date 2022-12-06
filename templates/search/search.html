@@ -1,100 +1,132 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <title>Bootstrap AutoComplete Demo Bootstrap 4</title>
-
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-
-    <style>
-        body {
-            padding: 0;
-            margin: 0;
-            border: none;
-            background-color: #3F3F3F;
-        }
-
-        .container {
-            margin: auto;
-        }
-
-        .search-box, .search-box-suggestion {
-            position: absolute;
-            top: 30vh;
-        }
-
-        .search-box-suggestion {
-            overflow: hidden;
-        }
-
-        #query, #suggestion, #suggestion-before, #suggestion-after {
-            /*position: absolute;*/
-            font-size: 10rem;
-            color: #f5f9e9;
-        }
-
-        #suggestion, #suggestion-before, #suggestion-after {
-            /*overflow: hidden;*/
-
-            z-index: 1;
-        }
-
-        #query {
-            background: transparent;
-
-            padding: 0;
-
-            color: transparent;
-            border-color: inherit;
-            -webkit-box-shadow: none;
-            box-shadow: none;
-            caret-color: transparent;
-
-            z-index: 2;
-        }
-    </style>
-
-</head>
-<body>
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-
-<nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="#" style="font-size: 3rem; font-weight: bolder; padding: 1rem 3rem;">
-        CityByte
-    </a>
-</nav>
-
+{% extends '../base.html' %}
+ 
+{% block title %}Search{% endblock %}
+ 
+ 
+{% block content %}
+ 
+<style>
+ 
+    .container {
+        margin: auto;
+    }
+ 
+    .search-box-container{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+ 
+    /* .search-box, .search-box-suggestion {
+        position: absolute;
+        top: 10vh;
+        border: none;
+    } */
+    .auto-complete-container{
+        position: absolute;
+        top: 15;
+    }
+ 
+    .search-box-suggestion {
+        overflow: hidden;
+    }
+ 
+    #query, #suggestion, #suggestion-before, #suggestion-after {
+        /*position: absolute;*/
+        font-size: 10rem;
+        color: #f5f9e9;
+        border: none;
+    }
+ 
+    #suggestion, #suggestion-before, #suggestion-after {
+        /*overflow: hidden;*/
+ 
+        z-index: 1;
+    }
+ 
+    #query {
+        background: transparent;
+ 
+        padding: 0;
+ 
+        color: white;
+        border-color: inherit;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        caret-color: transparent;
+ 
+        z-index: 2;
+    }
+    .d-block{
+        display: block;
+        color: "blue";
+    }
+ 
+    .d-none{
+        display: none;
+    }
+ 
+    #loading{
+        background: rgba(0,0,0,0.2);
+        color: white; margin: 8px 0; padding: 2px 8px; cursor: pointer;
+ 
+    }
+ 
+    .auto-complete-li{
+        background: rgba(0,0,0,0.2);
+        color: white; margin: 8px 0; padding: 2px 8px; cursor: pointer;
+    }
+ 
+    .auto-complete-li:hover{
+        background: rgba(0,0,0,0.5);
+ 
+    }
+ 
+ 
+</style>
+ 
+ 
 <div class="container">
-    <div class="search-box"><input type="text" class="form-control" id="query" spellcheck="false" autocomplete="off" onkeyup="getSuggestions(event)" placeholder="Type a city"></div>
-    <div class="search-box-suggestion"><span id="suggestion-before"></span><span id="suggestion"></span><span id="suggestion-after"></span></div>
+    <h1 style="font-size: 1rem; color: white; text-align: center; position:absolute; bottom:0; left:0; right:0;">{{userCount}} <span class="fa fa-regular fa-user fav"></span> signed up till now!</h1>
+    <div class="search-box-container">
+        <div class="search-box"><input type="text" class="form-control" id="query" spellcheck="false" autocomplete="off" onkeyup="getSuggestions(event)" placeholder="Type a city"></div>
+        <div class="d-none" id="loading">
+            Loading...
+        </div>
+        <div id="auto-complete-container" style="font-size:24px; height: 150px; overflow-y: hidden;">
+            <ul id="auto-complete-ul" style="list-style-type: none;">
+ 
+            </ul>
+        </div>
+ 
+    </div>
 </div>
-
+ 
+ 
 <script>
     var timeout = null;
     var timeout1 = null;
-
+    load = document.getElementById("loading")
+    auto_complete_list = document.getElementById("auto-complete-ul")
+    lists = []
+ 
     function reflectSuggestions(city, citiesJSON) {
         let citySuggestions = JSON.parse(citiesJSON).results;
-
+ 
         if (citySuggestions.length !== 0) {
             let cityFirstSuggestion = citySuggestions[0].name;
-
+ 
             clearTimeout(timeout1);
             timeout1 = setTimeout(getCityPhoto, 100, cityFirstSuggestion, updateBackground);
-
-            document.getElementById('suggestion-before').innerHTML = cityFirstSuggestion.slice(0, cityFirstSuggestion.indexOf(city));
-            document.getElementById('suggestion-after').innerHTML = cityFirstSuggestion.slice(cityFirstSuggestion.indexOf(city) + city.length);
+ 
+            // document.getElementById('suggestion-before').innerHTML = cityFirstSuggestion.slice(0, cityFirstSuggestion.indexOf(city));
+            // document.getElementById('suggestion-after').innerHTML = cityFirstSuggestion.slice(cityFirstSuggestion.indexOf(city) + city.length);
         }
     }
-
+ 
     function updateBackground(pathJSON) {
         let path = JSON.parse(pathJSON).path;
-
+ 
         if (path != null) {
             document.body.style.background = null;
             document.body.style.backgroundImage = "url('" + path + "')";
@@ -102,71 +134,125 @@
             document.body.style.backgroundRepeat = "no-repeat";
         }
     }
-
+ 
     function getCityPhoto(city, callback1) {
         let xhr1 = new XMLHttpRequest();
-
+ 
         let url1 = new URL('{{ request.scheme }}://{{ request.get_host }}{% url 'search:city_photo' %}');
         url1.searchParams.set('q', city);
-
+ 
         xhr1.onload = function(e) {
             callback1(this.responseText);
         }
-
+ 
         xhr1.open('GET', url1, true);
         xhr1.send();
     }
-
+ 
     function getCityList(callback) {
+        console.log(load.classList)
+ 
+        load.classList.remove("d-none")
+        load.classList.add("d-block")
+ 
+        console.log(load.classList)
         let xhr = new XMLHttpRequest();
         let city = document.getElementById("query").value;
-
+ 
         if (city.length === 0) {
+            load.classList.add("d-none")
+            load.classList.remove("d-block")
+ 
             return;
         }
-
+ 
         let url = new URL('{{ request.scheme }}://{{ request.get_host }}{% url 'search:city_search' %}');
         url.searchParams.set('q', city);
-
+ 
         xhr.onload = function(e) {
+            console.log(this.responseText)
+ 
+            var res = JSON.parse(this.responseText).results
+            lists = []
+            li_content = ""
+            for(var item of res){
+                lists.push(item)
+                let cityLabel = `${item.name},${item.address.countryCode}`
+                li_content += `<li class="auto-complete-li" onClick='updateQuery(event)'>${cityLabel}</li>`
+            }
+            auto_complete_list.innerHTML = li_content
+            console.log(lists)
+            if(lists.length == 0 && document.getElementById("query").value !== ""){
+                console.log("City Not found!");
+                alert("City Not Found! Try a different city!")
+ 
+            }
             callback(city, this.responseText);
+            load.classList.add("d-none")
+            load.classList.remove("d-block")
         }
-
+ 
         xhr.open('GET', url, true);
         xhr.send();
+ 
+ 
+ 
     }
-
+ 
+    function updateQuery(event){
+        console.log(event.target.innerHTML)
+        document.getElementById("query").value = event.target.innerHTML.split(',')[0]
+        clearTimeout(timeout);
+        timeout = setTimeout(getCityList, 700, reflectSuggestions);
+        auto_complete_list.innerHTML = ""
+        let place_name = event.target.innerHTML.split(',')
+        for(var x of lists){
+            console.log(x)
+            console.log(place_name)
+            if(x.name === place_name[0] && x.address.countryCode === place_name[1]){
+                location.href = "{% url "info_page" %}?city=" + x.name + "&country=" + x.address.countryCode;
+ 
+                break;
+            }
+        }
+ 
+    }
+ 
     function redict_to_info(city, citiesJSON) {
         let citySuggestions = JSON.parse(citiesJSON).results;
-
+ 
         if (citySuggestions.length !== 0) {
             location.href = "{% url "info_page" %}?city=" + citySuggestions[0].name + "&country=" + citySuggestions[0].address.countryCode;
         }
     }
-
+ 
     function clearSuggestions() {
-        document.getElementById('suggestion-before').innerHTML = "";
-        document.getElementById('suggestion-after').innerHTML = "";
+        load.classList.add("d-none")
+        load.classList.remove("d-block")
+        // document.getElementById('suggestion-before').innerHTML = "";
+        // document.getElementById('suggestion-after').innerHTML = "";
         document.body.style.backgroundImage = null;
         document.body.style.background = "#3F3F3F";
         document.body.style.backgroundSize = null;
         document.body.style.backgroundRepeat = null;
     }
-
+ 
     function getSuggestions(e){
         if (e.key === 'Enter' || e.keyCode === 13) {
             getCityList(redict_to_info);
         }
-
+        auto_complete_list.innerHTML = ""
+        load.classList.add("d-none")
+        load.classList.remove("d-block")
         document.getElementById("query").value = document.getElementById("query").value.split(' ').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
-        document.getElementById('suggestion').innerHTML =  '<b>' + document.getElementById("query").value + '</b>';
+        document.getElementById('query').innerHTML =  '<b>' + document.getElementById("query").value + '</b>';
         clearSuggestions();
-
+ 
         clearTimeout(timeout);
         timeout = setTimeout(getCityList, 700, reflectSuggestions);
     }
-
+ 
     setTimeout(getSuggestions, 1000);
 </script>
-</body>
-</html>
+ 
+{% endblock %}

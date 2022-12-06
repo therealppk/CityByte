@@ -16,12 +16,12 @@
 New and improved! Several new features and bug fixes were implemented to show significant improvement from Project 1.
 
 Below are the new features and improvements we made:
-1. Implemented a wish list/to-go list to save interesting locations so you can come back and look at them later
-2. Implement Caching to get API results faster
+1. Implemented a wish list/to-go list to save interesting locations so you can come back and look at them later :fire:
+2. Implement Caching to get API results faster :rocket:
 3. Created a signup/login page - having an account goes a long way when we add new features that are customized for the user!
 4. Comment Page - you can comment on the place and look at all the other comments that have been posted!
-5. Fixed WeatherApi Bug
-6. Implemented social media page and support contact information
+5. Fixed WeatherApi Bug :bug:
+6. Implemented social media page and support contact information. 
 
 ## Old Project - In Brief
 Below is a video of the old project:

@@ -88,8 +88,6 @@ We use GitHub actions to automate tasks of linting, code coverage, build, tests,
 
 Unit test are performed everytime there is a push or pull into the repository. They are present in `/search/tests.py`. 
 
-### How to build docs
-
 
 ### Code Coverage: 
 

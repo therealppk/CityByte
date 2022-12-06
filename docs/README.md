@@ -50,8 +50,7 @@ Below are the new features and improvements we made:
 `
 
 
-#### 5. Create .env file at ./CtyByte
-   Fill the texts here.
+#### 5. Create .env file at ./CityByte using the below template.
    
 ```
     GEODB_X_RAPID_API_KEY=0ebeca3f10msha647955d4a03bd3p16b08bjsn3570b7991a4c
@@ -63,9 +62,26 @@ Below are the new features and improvements we made:
     WEATHER_BIT_X_RAPID_API_KEY=0ebeca3f10msha647955d4a03bd3p16b08bjsn3570b7991a4c
     WEATHER_BIT_X_RAPID_API_HOST=weatherbit-v1-mashape.p.rapidapi.com
 ```
-Fill the above field and save.
+Create an account in the below websites to Fetch API keys and use them in the above template.  
+* [GeoDB Cities API](https://rapidapi.com/wirefreethought/api/geodb-cities/details)
+* [Weather API](https://rapidapi.com/weatherbit/api/weather)
+* [Amadeus API](https://developers.amadeus.com/)
+* [Unsplash API](https://unsplash.com/developers)
+* [Foursquare API](https://location.foursquare.com/developer/)  
 
-#### 6. Run the application:  
+#### 6. Set-up REDIS
+* Follow the instructions in [Getting Started](https://redis.io/docs/getting-started/) to Install Redis in your local environment.
+* Start the Redis Server: Open a terminal and run the following command:
+```
+   redis-server
+```
+* Open another terminal to start the REDIS CLI:
+```
+   redis-cli
+```
+
+Now, you can run the application.
+#### 7. Run the application:  
    
    ``` 
    python manage.py migrate
